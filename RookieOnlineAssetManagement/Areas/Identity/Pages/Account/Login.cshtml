@@ -26,19 +26,19 @@
         background-color: #fff;
     }
 
-        .login-area .login-form-wrap {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%,-50%);
-            width: 450px;
-            background: #fff;
-            border-radius: 5px;
-            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-            padding: 50px;
-            padding-top: 10px;
-            color: #6c757d;
-        }
+    .login-area .login-form-wrap {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 450px;
+        background: #fff;
+        border-radius: 5px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        padding: 50px;
+        padding-top: 10px;
+        color: #6c757d;
+    }
 
     .btn-login {
         display: block;
@@ -118,12 +118,14 @@
 
         <form id="account" method="post">
             <div class="mb-3">
-                <label class="form-label" asp-for="Input.Email">Email</label>
-                <input type="email" class="form-control" asp-for="Input.Email" />
+                <label class="form-label" asp-for="Input.UserName">Username</label>
+                <input type="text" class="form-control" asp-for="Input.UserName" />
+                <span asp-validation-for="Input.UserName" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label class="form-label" asp-for="Input.Password">Password</label>
                 <input type="password" class="form-control" asp-for="Input.Password" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <div class="form-check">
@@ -136,9 +138,20 @@
                 <span>Sign in</span>
             </button>
 
-            <div>
+            @*<div>
                 <a class="d-block text-right" asp-page="./ForgotPassword">Forgot your password?</a>
-            </div>
+            </div>*@
+            @*            <div>
+            <p>
+            <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+            </p>
+            <p>
+            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+            </p>
+            <p>
+            <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+            </p>
+            </div>*@
         </form>
     </div>
 </div>
