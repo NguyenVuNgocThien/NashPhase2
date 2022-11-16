@@ -58,11 +58,10 @@ namespace RookieOnlineAssetManagement
             {
                 configuration.RootPath = "ClientApp/build";
             });
-            services.AddTransient<SampleData>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SampleData seeder)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
@@ -106,7 +105,6 @@ namespace RookieOnlineAssetManagement
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
-            seeder.Initialize();
         }
     }
 }

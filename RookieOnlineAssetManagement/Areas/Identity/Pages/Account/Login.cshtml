@@ -1,0 +1,225 @@
+﻿@page
+@using RookieOnlineAssetManagement.Areas.Identity.Pages.Account
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+    Layout = null;
+}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+    * {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .login-area {
+        position: fixed;
+        z-index: 999;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        min-height: 100vh;
+        background-color: #fff;
+    }
+
+        .login-area .login-form-wrap {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 450px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            padding: 50px;
+            padding-top: 10px;
+            color: #6c757d;
+        }
+
+    .btn-login {
+        display: block;
+        width: 100%;
+        border: none;
+        outline: none;
+        color: white;
+        background-color: #cf2338;
+        border-radius: 6px;
+        font-size: 16px;
+        height: 50px;
+        font-weight: 700;
+        transition: all .2s ease-in-out;
+    }
+
+    .mb-3 {
+        margin-bottom: 12px;
+    }
+
+    .form-label {
+        display: block;
+        color: #a2a2a2;
+        margin-bottom: .5rem;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        border: 1px solid #ced4da;
+        border-radius: .375rem;
+    }
+
+    .d-block {
+        display: block;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+
+    .logo-login {
+        max-width: 100%;
+        display: block;
+        width: 32%;
+        margin: 0 auto;
+    }
+
+    .m-0 {
+        margin: 0;
+    }
+
+    .login-title {
+        font-weight: normal;
+        font-size: 28px;
+        margin-bottom: 12px;
+    }
+
+    .text-danger {
+        color: red;
+    }
+</style>
+
+
+<div class="login-area">
+    <div class="login-form-wrap">
+        <img src="https://image.thanhnien.vn/w1024/Uploaded/2022/bfznsfyr.bn/2020_01_16/nashtech/nash_tech_primary_pos_srgb_oycj.png" class="logo-login" alt="logo nashtech" />
+        <h1 class="m-0 text-center login-title">Sign in your account</h1>
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <form id="account" method="post">
+            <div class="mb-3">
+                <label class="form-label" asp-for="Input.Email">Email</label>
+                <input type="email" class="form-control" asp-for="Input.Email" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" asp-for="Input.Password">Password</label>
+                <input type="password" class="form-control" asp-for="Input.Password" />
+            </div>
+            <div class="mb-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" asp-for="Input.RememberMe" />
+                    <label class="form-check-label" asp-for="Input.RememberMe">Remember me</label>
+                </div>
+            </div>
+            <button type="submit" class="btn-login btn-custom-loading mb-3">
+                <div class="loader"></div>
+                <span>Sign in</span>
+            </button>
+
+            <div>
+                <a class="d-block text-right" asp-page="./ForgotPassword">Forgot your password?</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@*
+<h1>@ViewData["Title"]</h1>
+<div class="row">
+    <div class="col-md-4">
+        <section>
+            <form id="account" method="post">
+                <h2>Use a local account to log in. hehe</h2>
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-floating">
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                    <label asp-for="Input.Email" class="form-label"></label>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
+                    <label asp-for="Input.Password" class="form-label"></label>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div>
+                    <div class="checkbox">
+                        <label asp-for="Input.RememberMe" class="form-label">
+                            <input class="form-check-input" asp-for="Input.RememberMe" />
+                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                </div>
+                <div>
+                    <p>
+                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                    </p>
+                    <p>
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                    </p>
+                    <p>
+                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                    </p>
+                </div>
+            </form>
+        </section>
+    </div>
+    <div class="col-md-6 col-md-offset-2">
+        <section>
+            <h3>Use another service to log in.</h3>
+            <hr />
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div>
+                        <p>
+                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
+                            about setting up this ASP.NET application to support logging in via external services</a>.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins)
+                                {
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>
+    </div>
+</div>
+*@
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
